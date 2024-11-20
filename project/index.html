@@ -11,14 +11,18 @@
   <body>
     <nav>
       <div class="nav-content">
+        <div class="nav-brand">
+          <img src="./insat.png" alt="CRB100" height="40">
+        </div>
         <div class="nav-links">
           <a href="#presentation" aria-current="page">Présentation</a>
           <a href="#specifications">Spécifications</a>
           <a href="#objectifs">Objectifs</a>
           <a href="#fonctions">Fonctions</a>
           <a href="#variants">Variantes</a>
-          <a href="#cadre">Cadre de Réponse</a>
+          <a href="#cadre">Cadre</a>
           <a href="#customization">Personnalisation</a>
+          <a href="#client-section">Contact</a>
         </div>
         <button id="theme-toggle" class="theme-toggle">
           <i class="fas fa-moon"></i>
@@ -56,9 +60,11 @@
 
       <section id="specifications" class="section">
         <h2>Spécifications Techniques</h2>
+        
+        <!-- Component Viewer -->
         <div class="component-viewer">
           <div class="component-image">
-            <img src="https://raw.githubusercontent.com/stackblitz/stackblitz-images/main/compressor.png" alt="Compresseur CRB100" id="mainImage" />
+            <img src="./image4.PNG" alt="Compresseur CRB100" id="mainImage" />
             <div class="hotspots">
               <div class="hotspot" data-spot="compressor" style="top: 30%; left: 50%">
                 <div class="hotspot-dot"></div>
@@ -89,7 +95,22 @@
             <button id="resetZoom"><i class="fas fa-undo"></i></button>
           </div>
         </div>
-
+      
+        <!-- Image Slider -->
+        <div class="slider-container">
+          <div class="slider">
+            <div class="slide"><img src="./image1.PNG" alt="Image 1"></div>
+            <div class="slide"><img src="./image5.jpg" alt="Image 5"></div>
+            <div class="slide"><img src="./image2.PNG" alt="Image 2"></div>
+            <div class="slide"><img src="./image3.PNG" alt="Image 3"></div>
+          </div>
+          <div class="slider-controls">
+            <button class="prev">❮</button>
+            <button class="next">❯</button>
+          </div>
+        </div>
+      
+        <!-- Specifications Cards -->
         <div class="specs-container">
           <div class="spec-card">
             <h3>Électrique</h3>
@@ -119,6 +140,7 @@
           </div>
         </div>
       </section>
+      
 
       <section id="objectifs" class="section">
         <h2>Objectifs Pédagogiques</h2>
@@ -148,34 +170,101 @@
             <thead>
               <tr>
                 <th>Fonction</th>
-                <th>Critère</th>
-                <th>Niveau</th>
+                <th>Critère d’appréciation</th>
+                <th>Niveau d’exigence</th>
                 <th>Flexibilité</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Dimensionnement</td>
-                <td>Dimensions complètes</td>
-                <td>800x600x650 mm</td>
+                <td>Dimensionner le compresseur frigorifique</td>
+                <td>Longueur: 800 cm<br>Largeur: 600 cm<br>Hauteur: 650 cm<br>Masse: 30 Kg</td>
                 <td>F0</td>
+                <td>—</td>
               </tr>
               <tr>
-                <td>Alimentation</td>
-                <td>Tension/Fréquence</td>
-                <td>230V±10%, 50Hz</td>
+                <td>S'adapter au réseau électrique d'alimentation</td>
+                <td>Tension d’alimentation: 230V ±10%<br>Fréquence: 50 Hz ±5%</td>
                 <td>F1</td>
+                <td>—</td>
               </tr>
               <tr>
-                <td>Maintenance</td>
-                <td>Préventive/Corrective</td>
-                <td>Outillage réduit</td>
+                <td>Mesurer la température en amont du compresseur</td>
+                <td>Température ambiante: 32-35 °C</td>
                 <td>F1</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Mesurer la pression en amont du compresseur</td>
+                <td>Pression: 0-30 Bar</td>
+                <td>F1</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Filtrer et déshydrater les fluides frigorigènes</td>
+                <td>Pression max: 46 Bar<br>Grande capacité</td>
+                <td>F0</td>
+                <td>F2</td>
+              </tr>
+              <tr>
+                <td>Démarrer le compresseur</td>
+                <td>Résistance enroulement principal: 21 Ω<br>Résistance démarrage: 38 Ω<br>Relais de tension: 230V ±10%</td>
+                <td>F0</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Ouvrir la vanne manuelle de basse pression (BP)</td>
+                <td>Pression/Température basse</td>
+                <td>F0</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Compresser le gaz à l'aide du compresseur</td>
+                <td>Pression basse</td>
+                <td>F0</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Refroidir le liquide par condensation</td>
+                <td>Pression basse<br>Tension nominale: 230V<br>Courant nominal: 2A</td>
+                <td>F1</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Surveiller une surchauffe excessive</td>
+                <td>Température ambiante max: 43 °C</td>
+                <td>F0</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Faciliter l'intervention de maintenance</td>
+                <td>Maintenance préventive: outillage réduit<br>Maintenance corrective: notice d’instructions</td>
+                <td>F1</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Surveiller la tension et l'intensité</td>
+                <td>Valeur voltmètre: 70-265V</td>
+                <td>F1</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Couper l'alimentation en cas de surcharge</td>
+                <td>Température max: 46 °C<br>Courant: 6A</td>
+                <td>F0</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Indiquer si le système est sous tension</td>
+                <td>Tension: 230V ±10%</td>
+                <td>F1</td>
+                <td>—</td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
+      
 
       <section id="variants" class="section">
         <h2>Variantes et Solutions</h2>
@@ -232,6 +321,11 @@
       <section id="customization" class="section">
         <h2>Personnalisation pour les Clients</h2>
         <form id="customizationForm" class="info-card">
+          <label for="Type d'Usage"> Type D'usage:</label>
+          <select id="usage" name="usage">
+            <option value="pedagogique">Pédagogique</option>
+            <option value="indus">Industriel</option>
+          </select>
           <!-- Physical Dimensions -->
           <label for="dimensions">Dimensions (L x W x H) [mm]:</label>
           <input type="text" id="dimensions" name="dimensions" placeholder="800 x 600 x 650" required />
@@ -308,7 +402,9 @@
       
           <!-- Aesthetics -->
           <label for="color">Couleur préférée:</label>
-          <input type="color" id="color" name="color" value="#3498db" />
+<input type="color" id="color" name="color" value="#3498db" />
+<span id="color-display" style="display: inline-block; width: 30px; height: 30px; margin-left: 1rem; border: 1px solid var(--secondary-color); background-color: #3498db;"></span>
+
       
           <label for="additionalNotes">Notes supplémentaires:</label>
           <textarea id="additionalNotes" name="additionalNotes" rows="4" placeholder="Ajouter vos remarques ici..."></textarea>
@@ -317,41 +413,76 @@
         </form>
       </section>
       
-      <section id="client-form" class="section">
+      <section id="client-section" class="section">
         <h2>Formulaire de Contact</h2>
         <p class="form-intro">
           Merci de remplir ce formulaire pour partager vos plaintes, demandes ou messages avec nous. Votre retour est important pour améliorer nos services.
         </p>
         
-        <div id="formPage1" class="info-card">
-          <label for="choice">Type de message:</label>
-          <select id="choice" name="choice" required>
-            <option value="" disabled selected>Choisissez une option</option>
-            <option value="complaint">Plainte</option>
-            <option value="request">Demande/Question</option>
-            <option value="simpleMessage">Message simple</option>
-          </select>
+        <form id="client-form">
+          <div id="formPage1" class="info-card">
+            <label for="choice">Type de message:</label>
+            <select id="choice" name="choice" required>
+              <option value="" disabled selected>Choisissez une option</option>
+              <option value="complaint">Plainte</option>
+              <option value="request">Demande/Question</option>
+              <option value="simpleMessage">Message simple</option>
+            </select>
       
-          <label for="firstName">Prénom:</label>
-          <input type="text" id="firstName" name="firstName" placeholder="Entrez votre prénom" required />
+            <label for="firstName">Prénom:</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Entrez votre prénom" required />
       
-          <label for="lastName">Nom:</label>
-          <input type="text" id="lastName" name="lastName" placeholder="Entrez votre nom" required />
+            <label for="lastName">Nom:</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Entrez votre nom" required />
       
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" placeholder="Entrez votre email" required />
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Entrez votre email" required />
       
-          <button type="button" id="nextButton" class="theme-toggle" disabled>Suivant</button>
-        </div>
+            <button type="button" id="nextButton" class="theme-toggle" disabled>Suivant</button>
+          </div>
       
-        <div id="formPage2" class="info-card" style="display: none;">
-          <div id="additionalFields"></div>
-          <button type="button" id="backButton" class="theme-toggle">Retour</button>
-          <button type="submit" id="submitButton" class="theme-toggle">Envoyer</button>
-        </div>
+          <div id="formPage2" class="info-card" style="display: none;">
+            <div id="additionalFields">
+              <!-- Additional fields are dynamically added here -->
+            </div>
+            <button type="button" id="backButton" class="theme-toggle">Retour</button>
+            <button type="submit" id="submitButton" class="theme-toggle">Envoyer</button>
+          </div>
+        </form>
       </section>
-      
-      
     </main>
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>À propos</h3>
+          <p>CRB100 est leader dans la fabrication de compresseurs innovants pour l'industrie et l'éducation.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Liens rapides</h3>
+          <div class="footer-links">
+            <a href="#specifications">Spécifications</a>
+            <a href="#customization">Personnalisation</a>
+            <a href="#client-section">Contact</a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <div class="footer-links">
+            <a href="tel:+33123456789">+216 12345678</a>
+            <a href="mailto:contact@crb100.com">contact@crb100.com</a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Suivez-nous</h3>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
   </body>
 </html>

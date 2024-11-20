@@ -1,21 +1,83 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Theme toggle
+  // Initialize all features
+  initializeThemeToggle();
+  initializeImageZoom();
+  initializeSmoothScroll();
+  initializeVariantCardAnimations();
+  initializeScrollSpy();
+  initializeCustomizationForm();
+  initializeClientForm();
+  initializeSlider(); // Correct placement for slider initialization
+});
+
+function initializeSlider() {
+  const slider = document.querySelector(".slider");
+  const slides = document.querySelectorAll(".slide");
+  const prevButton = document.querySelector(".prev");
+  const nextButton = document.querySelector(".next");
+  const sliderContainer = document.querySelector(".slider-container");
+
+  if (!slider || slides.length === 0 || !prevButton || !nextButton) {
+    console.error("Error: Slider elements not found. Ensure the HTML structure is correct.");
+    return;
+  }
+
+  let currentIndex = 0;
+
+  const updateSliderPosition = () => {
+    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    adjustContainerHeight();
+  };
+
+  const adjustContainerHeight = () => {
+    const currentSlide = slides[currentIndex];
+    const img = currentSlide.querySelector("img");
+
+    // If the image is loaded, adjust the height immediately
+    if (img.complete) {
+      sliderContainer.style.height = `${img.offsetHeight}px`;
+    } else {
+      // Wait for the image to load before adjusting height
+      img.onload = () => {
+        sliderContainer.style.height = `${img.offsetHeight}px`;
+      };
+    }
+  };
+
+  // Set initial container height
+  adjustContainerHeight();
+
+  // Navigation button events
+  prevButton.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateSliderPosition();
+  });
+
+  nextButton.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSliderPosition();
+  });
+}
+
+
+function initializeThemeToggle() {
   const themeToggle = document.getElementById('theme-toggle');
   const html = document.documentElement;
-  
+
   themeToggle.addEventListener('click', () => {
     const currentTheme = html.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', newTheme);
     themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
   });
+}
 
-  // Image zoom functionality
+function initializeImageZoom() {
   const mainImage = document.getElementById('mainImage');
   const zoomIn = document.getElementById('zoomIn');
   const zoomOut = document.getElementById('zoomOut');
   const resetZoom = document.getElementById('resetZoom');
-  
+
   let scale = 1;
   const ZOOM_STEP = 0.2;
   const MAX_ZOOM = 3;
@@ -39,29 +101,27 @@ document.addEventListener('DOMContentLoaded', () => {
     scale = 1;
     mainImage.style.transform = `scale(${scale})`;
   });
+}
 
-  // Smooth scrolling for navigation
+function initializeSmoothScroll() {
   document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
       e.preventDefault();
       const targetId = this.getAttribute('href').substring(1);
       const target = document.getElementById(targetId);
-      
+
       target.scrollIntoView({
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
 
-      // Update active nav link
-      document.querySelectorAll('nav a').forEach(a => {
-        a.removeAttribute('aria-current');
-      });
+      document.querySelectorAll('nav a').forEach(a => a.removeAttribute('aria-current'));
       this.setAttribute('aria-current', 'page');
     });
   });
+}
 
-  // Interactive variant cards with animation
-  const variantCards = document.querySelectorAll('.variant-card');
-  variantCards.forEach(card => {
+function initializeVariantCardAnimations() {
+  document.querySelectorAll('.variant-card').forEach(card => {
     card.addEventListener('click', () => {
       card.style.transform = 'scale(1.05)';
       setTimeout(() => {
@@ -69,8 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 200);
     });
   });
+}
 
-  // Scroll spy for navigation
+function initializeScrollSpy() {
   const sections = document.querySelectorAll('.section');
   window.addEventListener('scroll', () => {
     let current = '';
@@ -88,123 +149,86 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+}
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('customizationForm');
-  
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-  
-      const data = new FormData(form);
-      const customizationDetails = {
-        dimension: data.get('dimension'),
-        power: data.get('power'),
-        color: data.get('color'),
-        additionalNotes: data.get('additionalNotes'),
-      };
-  
-      console.log('Customization Submitted:', customizationDetails);
-      alert('Votre personnalisation a été envoyée avec succès!');
-    });
+function initializeCustomizationForm() {
+  const form = document.getElementById('customizationForm');
+  const colorInput = document.getElementById('color');
+  const colorDisplay = document.getElementById('color-display'); // Assuming you've added a span for the preview
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const data = new FormData(form);
+    const customizationDetails = Object.fromEntries(data.entries());
+
+    console.log('Customization Submitted:', customizationDetails);
+    alert('Votre personnalisation a été envoyée avec succès!');
   });
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('customizationForm');
-  
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-  
-      const data = new FormData(form);
-      const customizationDetails = Object.fromEntries(data.entries());
-  
-      console.log('Customization Submitted:', customizationDetails);
-      alert('Votre personnalisation a été envoyée avec succès!');
+
+  if (colorInput && colorDisplay) {
+    // Update color display in real-time when the color input changes
+    colorInput.addEventListener('input', () => {
+      colorDisplay.style.backgroundColor = colorInput.value;
     });
+  }
+}
+
+
+function initializeClientForm() {
+  const choice = document.getElementById('choice');
+  const firstName = document.getElementById('firstName');
+  const lastName = document.getElementById('lastName');
+  const email = document.getElementById('email');
+  const nextButton = document.getElementById('nextButton');
+  const formPage1 = document.getElementById('formPage1');
+  const formPage2 = document.getElementById('formPage2');
+  const additionalFields = document.getElementById('additionalFields');
+  const backButton = document.getElementById('backButton');
+  const submitButton = document.getElementById('submitButton');
+
+  if (!document.getElementById('client-form')) {
+    console.error('Error: #client-form not found.');
+    return;
+  }
+
+  const validatePage1 = () => {
+    const isFormValid =
+      choice.value &&
+      firstName.value.trim() &&
+      lastName.value.trim() &&
+      email.value.trim();
+
+    nextButton.disabled = !isFormValid;
+  };
+
+  [choice, firstName, lastName, email].forEach(field => {
+    field.addEventListener('input', validatePage1);
   });
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    const choice = document.getElementById('choice');
-    const firstName = document.getElementById('firstName');
-    const lastName = document.getElementById('lastName');
-    const email = document.getElementById('email');
-    const nextButton = document.getElementById('nextButton');
-    const formPage1 = document.getElementById('formPage1');
-    const formPage2 = document.getElementById('formPage2');
-    const additionalFields = document.getElementById('additionalFields');
-    const backButton = document.getElementById('backButton');
-    const submitButton = document.getElementById('submitButton');
-  
-    // Enable "Suivant" only when all fields are filled
-    const validatePage1 = () => {
-      const isFormValid =
-        choice.value && // Check if a valid choice is selected
-        firstName.value.trim() && // Check if the first name is non-empty
-        lastName.value.trim() && // Check if the last name is non-empty
-        email.value.trim(); // Check if the email is non-empty
-      
-      console.log({
-        choice: choice.value,
-        firstName: firstName.value.trim(),
-        lastName: lastName.value.trim(),
-        email: email.value.trim(),
-        isFormValid,
-      });
-      
-      nextButton.disabled = !isFormValid;
-    };
-  
-    [choice, firstName, lastName, email].forEach((field) => {
-      field.addEventListener('input', validatePage1); // For `input` and `email`
-    });
-    
-    choice.addEventListener('change', validatePage1); // Specifically for dropdown
-    
-  
-    // Navigate to the next page
-    nextButton.addEventListener('click', () => {
-      const selected = choice.value;
-  
-      // Clear previous additional fields
-      additionalFields.innerHTML = '';
-  
-      // Create new fields based on the choice
-      if (selected === 'complaint') {
-        additionalFields.innerHTML = `
-          <label for="complaintDetails">Détails de la plainte:</label>
-          <textarea id="complaintDetails" name="complaintDetails" rows="4" placeholder="Expliquez votre plainte" required></textarea>
-        `;
-      } else if (selected === 'request') {
-        additionalFields.innerHTML = `
-          <label for="requestDetails">Détails de la demande/question:</label>
-          <textarea id="requestDetails" name="requestDetails" rows="4" placeholder="Expliquez votre demande ou question" required></textarea>
-        `;
-      } else if (selected === 'simpleMessage') {
-        additionalFields.innerHTML = `
-          <label for="simpleMessage">Votre message:</label>
-          <textarea id="simpleMessage" name="simpleMessage" rows="4" placeholder="Écrivez votre message" required></textarea>
-        `;
-      }
-  
-      // Show the second page and hide the first
-      formPage1.style.display = 'none';
-      formPage2.style.display = 'block';
-    });
-  
-    // Navigate back to the first page
-    backButton.addEventListener('click', () => {
-      formPage1.style.display = 'block';
-      formPage2.style.display = 'none';
-    });
-  
-    // Handle form submission
-    submitButton.addEventListener('click', (e) => {
-      e.preventDefault();
-  
-      const formData = new FormData(document.querySelector('#client-form'));
-      const formDetails = Object.fromEntries(formData.entries());
-  
-      console.log('Form Submitted:', formDetails);
-      alert('Votre formulaire a été soumis avec succès!');
-    });
+
+  nextButton.addEventListener('click', () => {
+    const selected = choice.value;
+    additionalFields.innerHTML = selected === 'complaint' ?
+      '<label for="complaintDetails">Détails de la plainte:</label><textarea id="complaintDetails" name="complaintDetails" rows="4" required></textarea>' :
+      selected === 'request' ?
+        '<label for="requestDetails">Détails de la demande:</label><textarea id="requestDetails" name="requestDetails" rows="4" required></textarea>' :
+        '<label for="simpleMessage">Votre message:</label><textarea id="simpleMessage" name="simpleMessage" rows="4" required></textarea>';
+
+    formPage1.style.display = 'none';
+    formPage2.style.display = 'block';
   });
-  
-});
+
+  backButton.addEventListener('click', () => {
+    formPage1.style.display = 'block';
+    formPage2.style.display = 'none';
+  });
+
+  submitButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    alert('Message envoyé avec succès!');
+    document.getElementById('client-form').reset();
+    formPage1.style.display = 'block';
+    formPage2.style.display = 'none';
+    nextButton.disabled = true;
+  });
+}
