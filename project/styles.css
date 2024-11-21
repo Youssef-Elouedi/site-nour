@@ -92,8 +92,67 @@ nav a[aria-current="page"] {
   margin: 0 auto;
 }
 
+/*spec*/
+/* Specs container */
+.specs-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Individual spec card */
+.spec-card {
+  flex: 1;
+  background: var(--card-bg);
+  border-radius: 8px;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.spec-card h3 {
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.spec-card ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.spec-card ul li {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Icon container */
+.icon-container {
+  background: var(--secondary-color);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 0 auto;
+  font-size: 1.5rem;
+}
+
+/* On hover effect */
+.spec-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+
 /* Card styles */
-.info-card, .spec-card, .variant-card, .objective-card, .framework-card {
+.info-card, .variant-card, .objective-card, .framework-card {
   background: var(--card-bg);
   border-radius: 8px;
   padding: 2rem;
@@ -102,6 +161,41 @@ nav a[aria-current="page"] {
 }
 
 /* Feature list styles */
+.features {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.feature {
+  flex: 1;
+  background: var(--card-bg);
+  border-radius: 8px;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.feature h3 {
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.feature p {
+  margin-top: 0.25rem;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+
+/* On hover effect */
+.feature:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
 .feature-list {
   list-style: none;
   margin: 1rem 0;
